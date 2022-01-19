@@ -1,0 +1,85 @@
+﻿@model EndPoint.Website.Models.ViewModels.Account.LoginViewModel;
+
+@{
+    ViewData["Title"] = " ورود";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-height"></div>
+
+
+<div class="login-register-area ptb-130 hm-3-padding">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-7 ml-auto mr-auto">
+                <div class="login-register-wrapper">
+                    <div class="login-register-tab-list nav">
+                        <h4> ورود به سایت </h4>
+                    </div>
+                    <div class="login-form-container">
+                        <div class="login-form">
+                            <form asp-action="Login" asp-controller="Account" asp-route-returnUrl="@ViewData["returnUrl"]" method="post">
+
+                                <input type="text" asp-for="Username" placeholder="نام کاربری">
+                                <span asp-validation-for="Username" class="text-danger"></span><br>
+                                <br />
+
+                                <input type="password" asp-for="Password" placeholder="رمز عبور">
+                                <span asp-validation-for="Password" class="text-danger"></span><br>
+                                <br />
+
+                                <div class="button-box">
+                                    <div class="login-toggle-btn">
+                                        <input type="checkbox" asp-for="RememberMe">
+                                        <label>مرا به خاطر بسپار</label>
+                                        <a href="#">رمز عبور را فراموش کرده اید؟</a>
+                                    </div>
+                                    <button type="submit" class="btn-style cr-btn"><span> ورود</span></button>
+                                </div><br />
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                @if (@ViewData["ErrorMessage"] != null)
+                                {
+                                    <div class="text-danger">@ViewData["ErrorMessage"]</div>
+                                }
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="brand-logo-area hm-4-padding">
+    <div class="container-fluid">
+        <div class="brand-logo-active owl-carousel gray-bg ptb-130">
+            <div class="single-logo">
+                <img alt="" src="~/assets/img/brand-logo/1.png">
+            </div>
+            <div class="single-logo">
+                <img alt="" src="~/assets/img/brand-logo/2.png">
+            </div>
+            <div class="single-logo">
+                <img alt="" src="~/assets/img/brand-logo/3.png">
+            </div>
+            <div class="single-logo">
+                <img alt="" src="~/assets/img/brand-logo/4.png">
+            </div>
+            <div class="single-logo">
+                <img alt="" src="~/assets/img/brand-logo/5.png">
+            </div>
+            <div class="single-logo">
+                <img alt="" src="~/assets/img/brand-logo/3.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}

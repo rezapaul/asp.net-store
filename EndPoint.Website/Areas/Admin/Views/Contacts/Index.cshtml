@@ -1,0 +1,80 @@
+﻿@using MyStore.Application.Services.Contacts.Queries.IGetContactsAdmin
+@model ContactsAdminDto
+@{
+    ViewData["Title"] = "لیست تماس ها ";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Zero configuration table -->
+        <section id="configuration">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <div class="card-body collapse show">
+                            <div class="card-block card-dashboard">
+                                <p class="card-text">لیست محصولات</p>
+                                @section Message
+{
+                                    @{
+                                        await Html.RenderPartialAsync("MessageAlert");
+                                    }
+
+                                }
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <div class="col-sm-12">
+                                        <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc">آیدی </th>
+                                                    <th class="sorting_asc">نام و نام خانوادگی</th>
+                                                    <th class="sorting_asc">ایمیل</th>
+                                                    <th class="sorting_asc">موضوع پیام</th>
+                                                    <th class="sorting_asc"> امکانات</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.Contacts)
+                                                {
+                                                    <tr role="row">
+                                                        <td>@item.Id</td>
+                                                        <td>@item.Name</td>
+                                                        <td>@item.Email</td>
+                                                        <td>@item.Title</td>
+                                                        <td>
+                                                            <a href="~/admin/contacts/detail/@item.Id" class="btn btn-warning">مشاهده متن پیام</a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="  text-center">
+                                    <paging total-records="Model.rowCount"
+                                            page-no="1"
+                                            page-size="10"
+                                            show-prev-next="true"
+                                            show-total-pages="false"
+                                            show-total-records="true"
+                                            show-page-size-nav="true"
+                                            show-first-numbered-page="true"
+                                            show-last-numbered-page="true"
+                                            query-string-key-page-no="Page"
+                                            query-string-key-page-size="PageSize"
+                                            gap-size="2">
+                                    </paging>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+

@@ -1,0 +1,170 @@
+﻿@using EndPoint.Website.ClaimUtility
+@model EndPoint.Website.Models.ViewModels.ContactUs.ContactUsViewModel
+@{
+    ViewData["Title"] = "تماس با ما";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-height"></div>
+
+<div class="breadcrumb-area mt-37 hm-4-padding">
+    <div class="container-fluid">
+        <div class="breadcrumb-content text-center">
+            <h2>با ما تماس بگیرید</h2>
+            <ul>
+                <li>
+                    <a href="~/">خانه</a>
+                </li>
+                <li> با ما تماس بگیرید </li>
+            </ul>
+            @section Message
+            {
+                @{
+                    await Html.RenderPartialAsync("Alert");
+                }
+
+            }
+        </div>
+    </div>
+</div>
+
+<div class="banner-area hm-4-padding">
+    <div class="container-fluid">
+        <div class="banner-img">
+            <a href="~/"><img src="~/assets/img/banner/16.jpg" alt=""></a>
+        </div>
+    </div>
+</div>
+
+<div class="contact-area hm-4-padding">
+
+    <div class="all-info ptb-130">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-info-wrapper">
+                        <h4 class="contact-title">اطلاعات</h4>
+                        <div class="communication-info">
+                            <div class="single-communication">
+                                <div class="communication-icon">
+                                    <i class="ti-home" aria-hidden="true"></i>
+                                </div>
+                                <div class="communication-text">
+                                    <h4>آدرس:</h4>
+                                    <p>ایران ، نور </p>
+                                </div>
+                            </div>
+                            <div class="single-communication">
+                                <div class="communication-icon">
+                                    <i class="ti-mobile" aria-hidden="true"></i>
+                                </div>
+                                <div class="communication-text">
+                                    <h4>تلفن:</h4>
+                                    <p>09397850037</p>
+                                </div>
+                            </div>
+                            <div class="single-communication">
+                                <div class="communication-icon">
+                                    <i class="ti-email" aria-hidden="true"></i>
+                                </div>
+                                <div class="communication-text">
+                                    <h4>ایمیل:</h4>
+                                    <p><a href="#">mystore@info.com</a></p>
+                                </div>
+                            </div>
+                            <div class="single-communication">
+                                <div class="communication-icon">
+                                    <i class="ti-world" aria-hidden="true"></i>
+                                </div>
+                                <div class="communication-text">
+                                    <h4>وبسایت:</h4>
+                                    <p><a href="~/">mystore.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-message-wrapper">
+                        <h4 class="contact-title">در تماس باشید</h4>
+                        <div class="contact-message">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form asp-action="ContactUs" asp-controller="Home" method="post">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="contact-form-style mb-20">
+                                                <input asp-for="Name" placeholder="نام و نام خانوادگی" type="text" value="@ClaimUtility.GetUserFullname(User)"><br>
+                                                <span asp-validation-for="Name" class="text-danger"></span><br />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="contact-form-style mb-20">
+                                                <input asp-for="Email" placeholder="ایمیل" type="email" value="@ClaimUtility.GetUserEmail(User)"><br>
+                                                <span asp-validation-for="Email" class="text-danger"></span><br />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="contact-form-style mb-20">
+                                                <input asp-for="Title" placeholder="موضوع" type="text"><br>
+                                                <span asp-validation-for="Title" class="text-danger"></span><br />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="contact-form-style">
+                                                <textarea asp-for="Text" placeholder="پیام"></textarea><br>
+                                                <span asp-validation-for="Text" class="text-danger"></span><br />
+                                                <button class="submit cr-btn btn-style" type="submit"><span>پیام بفرستید</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-action="ContactUs" asp-controller="Home" method="post">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="contact-form-style mb-20">
+                                                <input asp-for="Name" placeholder="نام و نام خانوادگی" type="text"><br>
+                                                <span asp-validation-for="Name" class="text-danger"></span><br />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="contact-form-style mb-20">
+                                                <input asp-for="Email" placeholder="ایمیل" type="email"><br>
+                                                <span asp-validation-for="Email" class="text-danger"></span><br />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="contact-form-style mb-20">
+                                                <input asp-for="Title" placeholder="موضوع" type="text"><br>
+                                                <span asp-validation-for="Title" class="text-danger"></span><br />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="contact-form-style">
+                                                <textarea asp-for="Text" placeholder="پیام"></textarea><br>
+                                                <span asp-validation-for="Text" class="text-danger"></span><br />
+                                                <button class="submit cr-btn btn-style" type="submit"><span>پیام بفرستید</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            }
+                            <p class="form-messege"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}

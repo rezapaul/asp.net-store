@@ -1,0 +1,727 @@
+/*-----------------------------------------------------------------------------------
+
+    Template Name: Signs- Minimalist eCommerce HTML5 Template
+    Description: This is html5 template
+    Author: Melika Khaliliyan
+    Website:https://aliniyazi.info/
+    Website:https://netita.ir/
+    Version: 1.0
+
+-----------------------------------------------------------------------------------*/
+/*Fonts*/
+@font-face {
+    font-family: 'IS';
+    src: url('../fonts/fa/ISLight.eot');
+    src: url('../fonts/fa/ISLightd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/ISLight.woff2') format('woff2'),
+    url('../fonts/fa/ISLight.woff') format('woff'),
+    url('../fonts/fa/ISLight.ttf') format('truetype'),
+    url('../fonts/fa/ISLight.svg#IS-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IS';
+    src: url('../fonts/fa/ISMedium.eot');
+    src: url('../fonts/fa/ISMediumd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/ISMedium.woff2') format('woff2'),
+    url('../fonts/fa/ISMedium.woff') format('woff'),
+    url('../fonts/fa/ISMedium.ttf') format('truetype'),
+    url('../fonts/fa/ISMedium.svg#IS-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IS';
+    src: url('../fonts/fa/IS.eot');
+    src: url('../fonts/fa/ISd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/IS.woff2') format('woff2'),
+    url('../fonts/fa/IS.woff') format('woff'),
+    url('../fonts/fa/IS.ttf') format('truetype'),
+    url('../fonts/fa/IS.svg#IS') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IS';
+    src: url('../fonts/fa/ISUltraLight.eot');
+    src: url('../fonts/fa/ISUltraLightd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/ISUltraLight.woff2') format('woff2'),
+    url('../fonts/fa/ISUltraLight.woff') format('woff'),
+    url('../fonts/fa/ISUltraLight.ttf') format('truetype'),
+    url('../fonts/fa/ISUltraLight.svg#IS-UltraLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IS';
+    src: url('../fonts/fa/ISBold.eot');
+    src: url('../fonts/fa/ISBoldd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/ISBold.woff2') format('woff2'),
+    url('../fonts/fa/ISBold.woff') format('woff'),
+    url('../fonts/fa/ISBold.ttf') format('truetype'),
+    url('../fonts/fa/ISBold.svg#IS-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ISDN';
+    src: url('../fonts/fa/ISDN.eot');
+    src: url('../fonts/fa/ISDNd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/ISDN.woff2') format('woff2'),
+    url('../fonts/fa/ISDN.woff') format('woff'),
+    url('../fonts/fa/ISDN.ttf') format('truetype'),
+    url('../fonts/fa/ISDN.svg#IRANSansDN') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ISNU';
+    src: url('../fonts/fa/ISNU.eot');
+    src: url('../fonts/fa/ISNUd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/ISNU.woff2') format('woff2'),
+    url('../fonts/fa/ISNU.woff') format('woff'),
+    url('../fonts/fa/ISNU.ttf') format('truetype'),
+    url('../fonts/fa/ISNU.svg#ISNU') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IY';
+    src: url('../fonts/fa/IY.eot');
+    src: url('../fonts/fa/IYd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/IY.woff2') format('woff2'),
+    url('../fonts/fa/IY.woff') format('woff'),
+    url('../fonts/fa/IY.ttf') format('truetype'),
+    url('../fonts/fa/IY.svg#IY') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IY';
+    src: url('../fonts/fa/IY-Light.eot');
+    src: url('../fonts/fa/IY-Lightd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/IY-Light.woff2') format('woff2'),
+    url('../fonts/fa/IY-Light.woff') format('woff'),
+    url('../fonts/fa/IY-Light.ttf') format('truetype'),
+    url('../fonts/fa/IY-Light.svg#IY-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IY';
+    src: url('../fonts/fa/IY-Bold.eot');
+    src: url('../fonts/fa/IY-Boldd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/IY-Bold.woff2') format('woff2'),
+    url('../fonts/fa/IY-Bold.woff') format('woff'),
+    url('../fonts/fa/IY-Bold.ttf') format('truetype'),
+    url('../fonts/fa/IY-Bold.svg#IY-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IY';
+    src: url('../fonts/fa/IY-Medium.eot');
+    src: url('../fonts/fa/IY-Mediumd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/IY-Medium.woff2') format('woff2'),
+    url('../fonts/fa/IY-Medium.woff') format('woff'),
+    url('../fonts/fa/IY-Medium.ttf') format('truetype'),
+    url('../fonts/fa/IY-Medium.svg#IY-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Av';
+    src: url('../fonts/fa/Av.eot');
+    src: url('../fonts/fa/Avd41d.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/fa/Av.woff2') format('woff2'),
+    url('../fonts/fa/Av.woff') format('woff'),
+    url('../fonts/fa/Av.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/*Fonts*/
+/*General*/
+body {
+    direction: rtl;
+    text-align: right;
+
+}
+*{
+    letter-spacing: 0!important;
+
+}
+/*General*/
+/*Herder*/
+.header-area {
+    left: initial;
+    right: 0;
+    direction: rtl;
+}
+
+.chosen-container {
+    direction: ltr !important;
+}
+
+.chosen-container-single .chosen-single div {
+    right: initial;
+    left: 0;
+}
+
+.chosen-container-single .chosen-single span {
+    margin-right: initial;
+    margin-left: 26px;
+}
+
+.language {
+    margin-right: initial;
+    margin-left: 27px;
+}
+
+.chosen-container .chosen-results {
+    text-align: right;
+}
+
+.same-style {
+    margin-left: initial;
+    margin-right: 16px;
+}
+
+.header-cart button span {
+    right: initial;
+    left: -1px;
+}
+
+.main-menu nav > ul > li > ul {
+    left: initial;
+    right: -23px;
+    text-align: right;
+
+}
+
+.main-menu nav ul li ul li:hover > a {
+    padding-left: initial;
+    padding-right: 15px;
+}
+
+.main-menu nav ul li ul > li > a::before {
+    left: initial;
+    right: 15px;
+
+}
+
+.chosen-container-single.chosen-container-single-nosearch .chosen-search {
+    position: absolute;
+    left: initial;
+    right: -9999px;
+}
+
+.chosen-container .chosen-drop {
+    left: initial;
+    right: -9999px;
+
+}
+
+.slider-area, .btn-style.cart-btn-style {
+    direction: ltr;
+}
+
+.sidebar-cart.inside {
+    right: initial;
+    left: 0px;
+}
+
+.sidebar-cart {
+    right: initial;
+    left: -480px;
+}
+
+.single-slider .container {
+    direction: rtl;
+}
+
+.slider-single-img > img {
+    float: left;
+    padding-left: initial;
+    padding-right: 60px;
+}
+
+.slider-content, .banner-content-5 {
+    text-align: right;
+}
+
+.slider-content p {
+    margin: 10px 0 21px;
+}
+
+.mean-container .mean-nav ul li {
+    float: right;
+}
+
+.mean-container .mean-nav ul li a {
+    float: right;
+    text-align: right;
+
+}
+
+.mean-container .mean-nav ul li a.mean-expand {
+    right: initial;
+    left: 0;
+}
+
+@media (max-width: 767px) {
+    .header-site-icon {
+        margin-right: initial;
+        margin-left: 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .mean-container a.meanmenu-reveal {
+        right: initial;
+        left: 0;
+    }
+}
+
+/*Herder*/
+/*Style*/
+.cart-title {
+    margin: 0px 30px 18px 0;
+}
+
+.banner-position-center-left {
+    left: initial;
+    right: 0;
+
+}
+
+.banner-position-center-right {
+    right: initial;
+    left: 0;
+}
+
+.banner-border-2::before {
+    right: initial;
+    left: -10px;
+}
+
+.product-tab-list a::before {
+    right: initial;
+    left: -4px;
+}
+
+.product-img > span {
+    left: initial;
+    right: 20px;
+}
+
+.product-action-style, .owl-carousel, .btn-hover, .quickview-btn-cart, .cart-plus-minus, .timer, .cart-title {
+    direction: ltr;
+}
+
+.modal-content {
+    text-align: right;
+}
+
+.qwick-view-left {
+    margin-right: initial;
+    margin-left: 30px;
+}
+
+.quick-view-list a {
+    margin-right: initial;
+    margin-left: 10px;
+}
+
+.quick-view-list a:last-child {
+    margin-right: initial;
+    margin-left: 0px;
+}
+
+.select-option-part select {
+    padding-left: initial;
+    padding-right: 20px;
+    background: rgba(0, 0, 0, 0) url(../img/icon-img/1.png) no-repeat scroll left 20px center;
+}
+
+.blog-hm-content {
+    text-align: right;
+}
+
+.blog-meta li {
+    margin-right: initial;
+    margin-left: 10px;
+}
+
+.blog-meta li span {
+    margin-right: initial;
+    margin-left: 4px;
+}
+
+#scrollUp {
+    right: initial;
+    left: 12px;
+}
+
+.footer-payment-method {
+    float: left;
+}
+
+.btn-style.cart-btn-style {
+    letter-spacing: 0;
+    margin-right: initial;
+    margin-left: 30px;
+
+}
+
+.cart-checkout-btn > a.no-mrg {
+    margin-right: initial;
+    margin-left: 0px;
+}
+
+.cart-total {
+    text-align: left;
+}
+
+.breadcrumb-content li a::after {
+    right: initial;
+    left: -3px;
+}
+
+.breadcrumb-content li a {
+    padding-right: initial;
+    padding-left: 10px;
+}
+
+.services-icon {
+    margin-right: initial;
+    margin-left: 20px;
+}
+
+.product-peice-3 > span {
+    margin-right: initial;
+    margin-left: 6px;
+}
+
+.product-list .product-img {
+    margin-right: initial;
+    margin-left: 30px;
+    float: right;
+}
+
+.shop-list-cart > a i {
+    margin-right: initial;
+    margin-left: 8px;
+}
+
+.price-decrease {
+    left: initial;
+    right: 0;
+}
+
+.product-action-3 a i {
+    margin-right: initial;
+    margin-left: 7px;
+}
+
+.product-addtocart {
+    left: initial;
+    right: 0;
+
+}
+
+.product-addtocart > a i {
+    margin-right: initial;
+    margin-left: 8px;
+}
+
+
+
+.product-filter h5::before {
+    left: initial;
+    right: 0;
+
+}
+
+.color-filter li a i {
+    float: right;
+    margin-right: initial;
+    margin-left: 11px;
+
+
+}
+
+.product-tags a {
+    margin-right: initial;
+    margin-left: 8px;
+}
+
+.price-values span {
+    float: right;
+    margin-right: initial;
+    margin-left: 6px;
+}
+
+.price-values input {
+    direction: ltr;
+    width: 140px;
+    float: left;
+    padding-left: 10px;
+}
+
+.pd-sub-title::before {
+    left: initial;
+    right: 0;
+
+}
+
+.product-size ul li a, .product-share ul li a {
+
+    float: right;
+    height: 31px;
+    margin-right: initial;
+    margin-left: 11px;
+}
+
+.product-size ul li a {
+    width: 70px;
+}
+
+.update-cart {
+    margin-left: initial;
+    margin-right: 20px;
+}
+
+.btn-style {
+    direction: ltr;
+}
+.coupon input.cart-submit {
+    right: initial;
+    left: 0;
+}
+.product-color > ul li {
+    float: right;
+    margin-right: initial;
+    margin-left: 15px;
+
+}
+.coupon input {
+    padding-left: 50px;
+    padding-right: 10px;
+}
+.shop-total ul li span {
+    float: left;
+}
+.product-categories li, .product-details-tags li {
+    margin-right: initial;
+    margin-left: 10px;
+}
+.coupon-accordion h3::before {
+    left: initial;
+    right: 1.5em;
+
+}
+.coupon-accordion h3 {
+    padding: 1em 3.5em 1em 2em !important;
+
+}
+.coupon-info p.form-row input[type="submit"] {
+    float:right;
+    margin-right: initial;
+    margin-left: 15px;
+}
+p.checkout-coupon input[type="text"] {
+    padding-left: initial;
+    padding-right: 10px;
+}
+p.checkout-coupon input[type="submit"] {
+    margin-left: initial;
+    margin-right: 6px;
+}
+.country-select::before {
+    right: initial;
+    left: 12px;
+}
+.country-select select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-left: initial;
+    padding-right: 10px;
+
+}
+.checkout-form-list input[type=text], .checkout-form-list input[type=password], .checkout-form-list input[type=email] {
+    padding: 0 10px 0 0 ;
+}
+.checkout-form-list input[type="checkbox"] {
+    margin-right: initial;
+    margin-left: 10px;
+
+}
+.ship-different-title h3 label {
+    margin-right: initial;
+    margin-left: 20px;
+
+}
+.contact-title::before {
+    left: initial;
+    right: 0;
+}
+.communication-info {
+    margin-right: initial;
+    margin-left: 80px;
+}
+.communication-icon {
+    margin-right: initial;
+    margin-left: 15px;
+}
+.news-form > button {
+    right: initial;
+    left: 20px;
+}
+.blog-search form input {
+    padding-left: 50px;
+    padding-right: 20px;
+}
+.recent-post-img {
+    margin-right: initial;
+    margin-left: 25px;
+}
+.blog-instagram li {
+    margin-right: initial;
+    margin-left: 6px;
+}
+.blog-sidebar-social li {
+    margin-right: initial;
+    margin-left: 32px;
+}
+.blog-sidebar-social li:last-child {
+    margin-right: initial;
+    margin-left: 0px;
+}
+.blog-tags ul > li {
+    margin-right: initial;
+    margin-left: 17px;
+}
+.blog-tags ul li::after {
+    right: initial;
+    left: -12px;
+}
+.blog-social > span {
+    margin: 3px 0 0 15px;
+}
+.blog-social ul li {
+    margin-left: initial;
+    margin-right: 13px;
+}
+.blog-social ul li:nth-child(1) {
+    margin-left: initial;
+    margin-right: 0px;
+}
+.quote-content h6::before {
+    left: initial;
+    right: 0;
+}
+.quote-content h6 {
+    padding-left: initial;
+    padding-right: 28px;
+}
+.pagination-style .ion-chevron-right:before {
+    content: "\f124";
+}
+.highlights-img {
+    margin-right: initial;
+    margin-left: 25px;
+}
+.blog-dec-tags ul li a {
+    margin-right: initial;
+    margin-left: 18px;
+}
+.blog-dec-tags ul li::after {
+    right: initial;
+    left: 6px;
+}
+.administrator-img {
+    margin-right: initial;
+    margin-left: 30px;
+}
+.blog-comment-img {
+    margin-right: initial;
+    margin-left: 28px;
+}
+.sidebar-search-input form .form-search button {
+    right: initial;
+    left: 0;
+}
+.sidebar-search-input form .form-search input {
+    padding: 0 0 0 40px;
+}
+.price span.new {
+    margin-right: initial;
+    margin-left: 12px;
+}
+.sidebar-search-icon {
+    float: left;
+    right: initial;
+    left: 375px;
+}
+
+
+
+
+
+
+
+/*Style*/
+
+/*Footer*/
+.food-info-icon {
+    margin-right: initial;
+    margin-left: 20px;
+}
+
+.twitter-icon {
+    margin-right: initial;
+    margin-left: 20px;
+}
+
+/*Footer*/
+/*Typography*/
+body {
+    font-family: "IS";
+}
+
+h1, h2 {
+    font-family: "Av";
+}
+
+ h4, h5, h6 {
+    font-family: "ISDN";
+}
+
+p, .banner-content-5 > h4 {
+    font-family: "IY";
+}
+
+.product-price > span, .timer, .dealy-price, .copyright > p, .food-info-content > p, .twitter-content > p a.link2, .cart-title > span, .cart-total, .cart-total h4 span, .product-peice-3 > span, .pagination-style li a,.shop-total ul li span ,.your-order,.communication-text > p,.blog-date-categori,.blog-comment-content > span,.blog-categori ul li a,.recent-post-content > span,.price,.header-cart button span,input.cart-plus-minus-box,.select-option-part select,.blog-meta li,.product-subtotal,.product-img > span,h3,.owl-item .slider-content .animated span,.banner-content-style1 > h2,.price-decrease > span,.product-rating > span,.blog-dec-title{
+    font-family: 'ISNU';
+}
+.blog-date-categori li {
+    font-style: normal;
+    font-family: 'ISNU';
+
+}
+/*Typography*/

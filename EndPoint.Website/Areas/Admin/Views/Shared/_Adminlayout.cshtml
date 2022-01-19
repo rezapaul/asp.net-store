@@ -1,0 +1,201 @@
+﻿@using EndPoint.Website.ClaimUtility
+<!DOCTYPE html>
+<html lang="en" class="loading">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Convex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Convex admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>@ViewData["title"] | پنل مدیریت</title>
+    <link rel="apple-touch-icon" sizes="60x60" href="~/AdminTemplate/img/ico/apple-icon-60.html">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/AdminTemplate/img/ico/apple-icon-76.html">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/AdminTemplate/img/ico/apple-icon-120.html">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/AdminTemplate/img/ico/apple-icon-152.html">
+    <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/demo/convex-bootstrap-admin-dashboard-template/app-assets/img/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="~/AdminTemplate/img/ico/favicon-32.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900%7CMontserrat:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/fonts/feather/style.min.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/fonts/simple-line-icons/style.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/vendors/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/vendors/css/prism.min.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/vendors/css/chartist.min.css">
+    <link rel="stylesheet" type="text/css" href="~/AdminTemplate/css/app.css">
+</head>
+<body data-col="2-columns" class=" 2-columns ">
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <div class="wrapper">
+
+
+        <div data-active-color="black" data-background-color="white" data-image="" class="app-sidebar">
+            <div class="sidebar-header">
+                <div class="logo clearfix">
+                    <a asp-controller="ManageUsers" asp-action="Index" class="logo-text float-right">
+                        <span class="text align-middle">پنل مدیریت</span>
+                    </a>
+                </div>
+            </div>
+            <div class="sidebar-content">
+                <div class="nav-container">
+                    <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span><span class="tag badge badge-pill badge-danger mt-1">2</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a asp-controller="ManageUsers" asp-action="Index" class="menu-item">مدیریت کاربران</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="ManageRoles" asp-action="Index" class="menu-item">مدیریت مقام ها</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">دسته بندی ها</span><span class="tag badge badge-pill badge-danger mt-1">2</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a asp-controller="Category" asp-action="Index" class="menu-item">لیست دسته بندی ها</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Category" asp-action="Add" class="menu-item">افزودن دسته بندی جدید</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">محصولات </span><span class="tag badge badge-pill badge-danger mt-1">2</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a asp-controller="Product" asp-action="Index" class="menu-item">لیست محصولات</a>
+                                </li>
+                                <li>
+                                    <a asp-controller="Product" asp-action="AddProduct" class="menu-item">افزودن محصول جدید</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">پیام کاربران </span><span class="tag badge badge-pill badge-danger mt-1">1</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a asp-controller="Contacts" asp-action="Index" class="menu-item">لیست پیام ها</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">سفارشات رسیده  </span> <span class="tag badge badge-pill badge-danger mt-1">1</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a asp-controller="Orders" asp-action="Index" class="menu-item">لیست سفارشات</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-screen-desktop"></i><span data-i18n="" class="menu-title">برنامه ها</span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="chat.html" class="menu-item">گفت و گو</a>
+                                </li>
+                                <li>
+                                    <a href="taskboard.html" class="menu-item">تابلو وظایف</a>
+                                </li>
+                                <li>
+                                    <a href="calendar.html" class="menu-item">تقویم</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-background"></div>
+        </div>
+
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-faded">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" class="navbar-toggle d-lg-none float-right"><span class="sr-only">تغییر ناوبری </span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="d-lg-none navbar-right navbar-collapse-toggle"><a class="open-navbar-container"><i class="ft-more-vertical"></i></a></span><a id="navbar-fullscreen" href="javascript:;" class="ml-2 display-inline-block apptogglefullscreen">
+                        <i class="ft-maximize blue-grey darken-4 toggleClass"></i>
+                        <p class="d-none">تمام صفحه</p>
+                    </a><a class="mr-2 display-inline-block">
+                        <i class="ft-shopping-cart blue-grey darken-4"></i>
+                        <p class="d-none">سبد خرید</p>
+                    </a>
+                </div>
+                <div class="navbar-container">
+                    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                        <ul class="navbar-nav">
+                            <li class="dropdown nav-item mr-0">
+                                <a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-user-link dropdown-toggle">
+                                    <span class="avatar avatar-online"><img id="navbar-avatar" src="~/AdminTemplate/img/portrait/small/avatar-s-3.jpg" alt="avatar" /></span>
+                                    <p class="d-none">تنظیمات کاربر</p>
+                                </a>
+                                <div aria-labelledby="dropdownBasic3" class="dropdown-menu dropdown-menu-left">
+                                    <div class="arrow_box_right">
+                                        <a class="dropdown-item py-1"><i class="ft-edit ml-2"></i><span>@ClaimUtility.GetUserFullname(User)</span></a><a href="~/" class="dropdown-item py-1"><i class="ft-link-2 ml-2"></i><span>مشاهد وبسایت</span></a>
+                                        <div class="dropdown-divider"></div>
+                                        <form action="~/account/logout" method="post">
+                                            <button type="submit" class="dropdown-item text-danger"><i class="ft-power ml-2"></i><span>خروج</span></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-panel">
+            <div class="main-content">
+                <div class="content-wrapper">
+                    <div class="container-fluid">
+                        @await RenderSectionAsync("Message", required: false)
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer footer-static footer-light">
+                <p class="clearfix text-muted text-center px-2"><span> &copy; 2020 کپی رایت همه حقوق محفوظ است </span></p>
+            </footer>
+
+        </div>
+    </div>
+
+
+
+
+    <!-- BEGIN VENDOR JS-->
+    <script src="~/AdminTemplate/vendors/js/core/jquery-3.3.1.min.js"></script>
+    <script src="~/AdminTemplate/js/persian-datepicker.min.js"></script>
+    <script src="~/AdminTemplate/vendors/js/core/popper.min.js"></script>
+    <script src="~/AdminTemplate/vendors/js/core/bootstrap.min.js"></script>
+    <script src="~/AdminTemplate/vendors/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="~/AdminTemplate/vendors/js/prism.min.js"></script>
+    <script src="~/AdminTemplate/vendors/js/jquery.matchHeight-min.js"></script>
+    <script src="~/AdminTemplate/vendors/js/screenfull.min.js"></script>
+    <script src="~/AdminTemplate/vendors/js/pace/pace.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="~/AdminTemplate/vendors/js/chartist.min.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN CONVEX JS-->
+    <script src="~/AdminTemplate/js/app-sidebar.js"></script>
+    <script src="~/AdminTemplate/js/notification-sidebar.js"></script>
+    <script src="~/AdminTemplate/js/customizer.js"></script>
+    <script src="~/AdminTemplate/js/main.js"></script>
+    <!-- END CONVEX JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="~/AdminTemplate/js/dashboard-ecommerce.js"></script>
+    <!-- END PAGE LEVEL JS-->
+    @RenderSection("Scripts", false)
+</body>
+
+
+</html>
+

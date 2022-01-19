@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "افزودن دسته بندی";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+<section class="basic-elements">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+
+                    @section Message
+{
+                        @{
+                            await Html.RenderPartialAsync("MessageAlert");
+                        }
+
+                    }
+
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title mb-0">اضافه کردن دسته بندی جدید برای محصولات</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="px-3">
+                        <div class="form">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <form asp-area="Admin" asp-controller="Category" asp-action="Add" class="form-group" method="post">
+                                            <input type="hidden" name="ParentId" value="@ViewBag.parentId" />
+                                            <label for="basicInput">نام دسته بندی</label>
+                                            <input type="text" class="form-control"  name="Name"><br />
+                                            <button type="submit" class="btn btn-success col-md-12">اضافه کردن به لیست</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

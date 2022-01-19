@@ -1,0 +1,207 @@
+﻿@addTagHelper *, LazZiya.TagHelpers
+@using EndPoint.Website.ClaimUtility 
+@using MyStore.Application.Services.Products.Queries.IProductsForWebsite
+@model ProductsDto
+
+@{
+    ViewData["Title"] = "صفحه فروشگاه";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int pageNumber = 1;
+    int pageSize = 8;
+    int.TryParse(Context.Request.Query["Page"], out pageNumber);
+    int.TryParse(Context.Request.Query["PageSize"], out pageSize);
+}
+
+
+<div class="header-height"></div>
+
+<div class="breadcrumb-area mt-37 hm-4-padding">
+    <div class="container-fluid">
+        <div class="breadcrumb-content text-center">
+            <h2>صفحه فروشگاه</h2>
+            <ul>
+                <li>
+                    <a href="~/">خانه</a>
+                </li>
+                <li>صفحه فروشگاه</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="banner-area hm-4-padding">
+    <div class="container-fluid">
+        <div class="banner-img">
+            <a href="~/"><img src="~/assets/img/banner/16.jpg" alt=""></a>
+        </div>
+    </div>
+</div>
+
+
+<div class="shop-wrapper hm-3-padding pt-120 pb-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="shop-topbar-wrapper">
+                    <div class="grid-list-options">
+                        <ul class="view-mode">
+                            <li class="active"><a href="#product-grid" data-view="product-grid"><i class="ion-grid"></i></a></li>
+                            <li><a href="#product-list" data-view="product-list"><i class="ion-navicon"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="shop-filter">
+                        <button class="product-filter-toggle">فیلتر</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="product-filter-wrapper">
+                    <div class="row">
+                        <div class="product-filter col-md-3 col-sm-6 col-xs-12 mb-30">
+                            <h5>مرتب سازی بر اساس</h5>
+                            <ul class="sort-by">
+                                <li><a href="#">پیش فرض</a></li>
+                                <li><a href="#">محبوبیت</a></li>
+                                <li><a href="#">میانگین امتیاز</a></li>
+                                <li><a href="#">جدید بودن</a></li>
+                                <li><a href="#">قیمت: پایین تا زیاد</a></li>
+                                <li><a href="#">قیمت: بالا تا پایین</a></li>
+                            </ul>
+                        </div>
+                        <div class="product-filter col-md-3 col-sm-6 col-xs-12 mb-30">
+                            <h5>فیلترهای رنگی</h5>
+                            <ul class="color-filter">
+                                <li><a href="#"><i style="background-color: #000000;"></i>مشکی</a></li>
+                                <li><a href="#"><i style="background-color: #663300;"></i>قهوه ای</a></li>
+                                <li><a href="#"><i style="background-color: #FF6801;"></i>نارنجی</a></li>
+                                <li><a href="#"><i style="background-color: #ff0000;"></i>قرمز</a></li>
+                                <li><a href="#"><i style="background-color: #FFEE00;"></i>زرد</a></li>
+                            </ul>
+                        </div>
+                        <div class="product-filter col-md-3 col-sm-6 col-xs-12 mb-30">
+                            <h5>برچسب های محصول</h5>
+                            <div class="product-tags">
+                                <a href="#">جدید ,</a>
+                                <a href="#">برند ,</a>
+                                <a href="#">مشکی ,</a>
+                                <a href="#">سفید ,</a>
+                                <a href="#">چیر ,</a>
+                                <a href="#">جدول ,</a>
+                                <a href="#">لورم ,</a>
+                                <a href="#">اپسوم ,</a>
+                                <a href="#">دلر ,</a>
+                                <a href="#">سایت ,</a>
+                                <a href="#">آمت ,</a>
+                            </div>
+                        </div>
+                        <div class="product-filter col-md-3 col-sm-6 col-xs-12 mb-30">
+                            <h5>فیلتر بر اساس قیمت</h5>
+                            <div id="price-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 10%; width: 61.4286%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 10%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 71.4286%;"></span></div>
+                            <div class="price-values">
+                                <span>قیمت:</span>
+                                <input type="text" class="price-amount">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-list-product-wrapper">
+            <div class="product-grid product-view">
+                <div class="row">
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="product-width col-md-6 col-xl-3 col-lg-4">
+                            <div class="product-wrapper mb-35">
+                                <div class="product-img">
+                                    <a href="~/products/detail/@item.Id">
+                                        <img src="@item.ImageSrc" alt="">
+                                    </a>
+                                    @*<div class="price-decrease">
+                                            <span>30٪ تخفیف</span>
+                                        </div>*@
+                                    <div class="product-action-3">
+                                        <a class="action-plus-2" title="مشاهده سریع" data-toggle="modal" data-target="#exampleModal" href="#">
+                                            <i class="ti-plus"></i> مشاهده سریع
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="product-title-wishlist">
+                                        <div class="product-title-3">
+                                            <h4><a href="product-details.html">@item.Title</a></h4>
+                                        </div>
+                                        @if(User.Identity.IsAuthenticated)
+                                        {
+                                            <div class="product-wishlist-3">
+                                                <form asp-action="Addwish" asp-controller="User" method="post">
+                                                    <input type="hidden" value="@item.Id" name="ProductId" />
+                                                    <button class="btn btn-warning"><i class="ti-heart text-light"></i></button>
+                                                </form>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="product-peice-addtocart p-1">
+                                        <div class="product-peice-3">
+
+                                            <span>@item.Price.ToString("n0") تومان</span>
+                                        </div>
+                                        <div class="product-addtocart ">
+                                            <form asp-controller="Cart" asp-action="Add" method="post">
+                                                <input type="hidden" name="ProductId" value="@item.Id"/>
+                                                <button type="submit" class="btn btn-outline-dark"> <i class="ti-shopping-cart"></i> افزودن به سبد خرید</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-list-details">
+                                    <h2><a href="product-details.html">@item.Title</a></h2>
+                                    <div class="product-rating">
+                                        <i class="ion-ios-star"></i>
+                                        <i class="ion-ios-star"></i>
+                                        <i class="ion-ios-star"></i>
+                                        <i class="ion-ios-star"></i>
+                                        <i class="ion-ios-star"></i>
+                                    </div>
+                                    <div class="product-price">
+
+                                        <span>@item.Price.ToString("n0") تومان</span>
+                                    </div>
+                                    <p>@item.Description</p>
+                                    <div class="shop-list-cart">
+                                        <a href="cart.html"><i class="ti-shopping-cart"></i>  افزودن به سبد خرید</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="pagination-style text-center mt-30">
+                    
+                        <nav aria-label="Page navigation example">
+                            <div class="  text-center">
+                                <paging total-records="@Model.TotalRow"
+                                        page-no="@pageNumber==0?1:pageNumber"
+                                        page-size="@pageSize==0?8:pageSize"
+                                        show-prev-next="true"
+                                        show-total-pages="false"
+                                        show-total-records="false"
+                                        show-page-size-nav="true"
+                                        show-first-numbered-page="true"
+                                        show-last-numbered-page="true"
+                                        query-string-key-page-no="Page"
+                                        query-string-key-page-size="PageSize"
+                                        query-string-value="@@(Request.QueryString.Value)"
+                                        gap-size="2">
+                                </paging>
+                            </div>
+                        </nav>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

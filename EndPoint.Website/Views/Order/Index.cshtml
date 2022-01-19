@@ -1,0 +1,133 @@
+﻿@using MyStore.Application.Services.Orders.Queries.IGetUserOrders
+@model UserOrdersDto
+
+@{
+    ViewData["Title"] = "سفارش ها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-height"></div>
+
+<div class="breadcrumb-area mt-37 hm-4-padding">
+    <div class="container-fluid">
+        <div class="breadcrumb-content text-center">
+            <h2>صفحه سفارش ها</h2>
+            <ul>
+                <li>
+                    <a href="~/">خانه</a>
+                </li>
+                <li>صفحه سفارش ها</li>
+                @section Message
+                {
+                    @{
+                        await Html.RenderPartialAsync("Alert");
+                    }
+
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="banner-area hm-4-padding">
+    <div class="container-fluid">
+        <div class="banner-img">
+            <a href="~/"><img src="~/assets/img/banner/16.jpg" alt=""></a>
+        </div>
+    </div>
+</div>
+
+<div class="product-cart-area hm-3-padding pt-120 pb-130 text-center">
+    <div class="container-fluid">
+        <div class="row">
+
+            @if (Model.Oreders.Count < 1)
+            {
+                <h5 class="text-danger"  style="padding-right:560px;">سفارشی ثبت نکرده اید</h5>
+            }
+            else
+            {
+                <div class="your-order">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="table-content ">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product-thumbnail">آیدی</th>
+                                        <th class="product-thumbnail">تاریخ سفارش</th>
+                                        <th class="product-price"> وضعیت سفارش</th>
+                                        <th class="product-thumbnail">تعداد محصولات</th>
+                                        <th class="product-thumbnail">قیمت کل</th>
+                                        <th class="product-price">امکانات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model.Oreders)
+                                    {
+
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <span class="amount">@item.Id</span>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span class="amount">@item.Date</span>
+                                            </td>
+                                            <td class="product-name">
+                                                <div>
+                                                    @if (item.Status.EndsWith("Recived"))
+                                                    {
+                                                        <div class="p-2 mb-2 bg-primary text-white" style="font-size:12px;width:80%;">
+                                                            <span class="amount card-body">سفارش دریافت شده</span>
+                                                        </div>
+                                                    }
+                                                    @if (item.Status.Contains("Accepted"))
+                                                    {
+                                                        <div class="p-2 mb-2 bg-secondary text-white" style="font-size:12px;width:80%;">
+                                                            <span class="amount card-body">سفارش پذیرفته شده</span>
+                                                        </div>
+                                                    }
+                                                    @if (item.Status.Contains("Processing"))
+                                                    {
+                                                        <div class="p-2 mb-2 bg-warning text-white" style="font-size:12px;width:80%;">
+                                                            <span class="amount card-body">درحال پردازش</span>
+                                                        </div>
+                                                    }
+                                                    @if (item.Status.Contains("Sent"))
+                                                    {
+                                                        <div class="p-2 mb-2 bg-success text-white" style="font-size:12px;width:80%;">
+                                                            <span class="amount card-body">سفارش ارسال شده</span>
+                                                        </div>
+                                                    }
+                                                    @if (item.Status.Contains("RecivedByCustomer"))
+                                                    {
+                                                        <div class="p-2 mb-2 bg-dark text-white" style="font-size:12px;width:80%;">
+                                                            <span class="amount card-body">تحویل مشتری گردید</span>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td class="product-thumbnail">
+                                                <span class="amount">@item.CountProducts</span>
+                                            </td>
+                                            <td class="product-thumbnail"><span class="amount">@item.SumProducts.ToString("n0") تومان</span></td>
+
+
+                                            <td class="product-price">
+                                                <a href="~/order/detail/@item.Id" class="btn btn-outline-warning" style="font-size:10px;"> جزییات سفارش</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            }
+            </div>
+    </div>
+</div>
+
+
+

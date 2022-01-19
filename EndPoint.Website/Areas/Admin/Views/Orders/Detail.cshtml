@@ -1,0 +1,114 @@
+﻿@using MyStore.Application.Services.Orders.Queries.IGetOrderDetailAdmin
+@model OrderDetailAdminDto
+
+@{
+    ViewData["Title"] = "جزییات سفارش";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title-wrap bar-warning">
+                <div class="card-title">جزییات سفارش</div>
+                @section Message
+{
+                    @{
+                        await Html.RenderPartialAsync("MessageAlert");
+                    }
+
+                }
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <ul class="no-list-style">
+                            <li class="mb-2">
+                                <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i> نام تحویل کیرنده </a></span>
+                                <span class="line-height-2 display-block overflow-hidden">@Model.FullName</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <ul class="no-list-style">
+                            <li class="mb-2">
+                                <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i> شماره تماس </a></span>
+                                <span class="line-height-2 display-block overflow-hidden">@Model.Phone</span>
+                            </li>
+                            <li class="mb-2">
+                                <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i> قیمت کل </a></span>
+                                <span class="line-height-2 display-block overflow-hidden"> @Model.SumProducts.ToString("n0") تومان</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <ul class="no-list-style">
+                            <li class="">
+                                <span class="primary text-bold-500"><a><i class="ft-home font-small-3"></i> آدرس کامل </a></span>
+                                <span class="line-height-2 display-block overflow-hidden">@Model.Province</span>
+                                <span class="line-height-2 display-block overflow-hidden">@Model.City</span>
+                                <span class="line-height-2 display-block overflow-hidden"> کد پستی  : @Model.ZipCode</span>
+                                <span class="line-height-2 display-block overflow-hidden">@Model.FullAddress</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="card-title-wrap bar-success">
+                <div class="card-title">  محصول های سبد خرید</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-block">
+                <div class="row">
+
+
+                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                    <div class="col-sm-12">
+                        <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc">آیدی </th>
+                                    <th class="sorting_asc">نام محصول</th>
+                                    <th class="sorting_asc">تعداد محصول</th>
+                                    <th class="sorting_asc">قیمت</th>
+                                    <th class="sorting_asc">  قیمت کل</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    <tr role="row">
+                                        <td>@item.Id</td>
+                                        <td><a href="~/products/detail/@item.ProductId">@item.ProdductName</a></td>
+                                        <td>@item.Count.ToString()</td>
+                                        <td>@item.Price.ToString("n0")</td>
+                                        <td>@((item.Price * item.Count).ToString("n0"))</td>
+                                        
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+

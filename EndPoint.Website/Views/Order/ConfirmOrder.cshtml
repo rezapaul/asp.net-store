@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "ConfirmOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-height"></div>
+<div class="breadcrumb-area mt-37 hm-4-padding">
+    <div class="container-fluid">
+        <div class="breadcrumb-content text-center">
+            
+                @section Message
+                {
+                    @{
+                        await Html.RenderPartialAsync("Alert");
+                    }
+
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="breadcrumb-area mt-37 hm-4-padding">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-12 col-sm-offset-3">
+                <br><br> <h1 style="color:#0fad00">تراکنش موفق</h1>
+                <img src="~/assets/img/product/true.png" width="150">
+                <br />
+                <p style="font-size:20px;margin-top:20px;">
+                    با تشکر از شما ، سفارش شما دریافت شد.
+                </p>
+                <a href="~/" class="btn btn-success">     صفحه اصلی      </a>
+                <br><br>
+            </div>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,91 @@
+﻿@using MyStore.Application.Services.Wishlists.Queries.IGetWishlistsService
+@model WishListsDto  
+@{
+    ViewData["Title"] = "لیست علاقه مندیها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-height"></div>
+
+<div class="breadcrumb-area mt-37 hm-4-padding">
+    <div class="container-fluid">
+        <div class="breadcrumb-content text-center">
+            <h2>لیست علاقه مندیها</h2>
+            <ul>
+                <li>
+                    <a href="~/">خانه</a>
+                </li>
+                <li>لیست علاقه مندیها</li>
+            </ul>
+            @section Message
+            {
+            @{
+                await Html.RenderPartialAsync("Alert");
+            }
+
+            }
+        </div>
+        
+    </div>
+</div>
+<div class="banner-area hm-4-padding">
+    <div class="container-fluid">
+        <div class="banner-img">
+            <a href="#"><img src="~/assets/img/banner/16.jpg" alt=""></a>
+        </div>
+    </div>
+</div>
+<div class="product-cart-area hm-3-padding pt-120 pb-130">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                @if (Model.Wishlists.Count < 1)
+                {
+                    <p>تاکنون چیزی اضافه نکرده اید</p>
+                }
+                else
+                {
+                    <div class="table-content table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="product-name">محصولات</th>
+                                    <th class="product-price">نام محصولات</th>
+                                    <th class="product-name">قیمت</th>
+                                    <th class="product-price">دسته بندی</th>
+                                    <th class="product-subtotal">حذف</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model.Wishlists)
+                                {
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <a href="~/products/detail/@item.ProductId"><img src="~/@item.ImageSource" height="90" alt=""></a>
+                                        </td>
+                                        <td class="product-name">
+                                            <a href="~/products/detail/@item.ProductId">@item.ProductTitle</a>
+                                        </td>
+                                        <td class="product-price"><span class="amount">@item.Price.ToString("n0") تومان</span></td>
+                                        <td class="product-name">
+                                            <a href="~/products?CatId=@item.CategoryId">@item.Category</a>
+                                        </td>
+
+                                        <td class="product-cart-icon product-subtotal">
+                                            <form asp-action="Delete" asp-controller="User" method="post">
+                                                <input type="hidden" value="@item.WishlisId" name="WishId" />
+                                                <button type="submit" class="btn btn-danger"> پاک کردن</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

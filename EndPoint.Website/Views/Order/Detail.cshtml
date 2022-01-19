@@ -1,0 +1,106 @@
+﻿@using MyStore.Application.Services.Orders.Queries.IGetOrderDeatil
+@model OrderDetailDto
+
+@{
+    ViewData["Title"] = "جزییات سفارش";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-height"></div>
+
+<div class="breadcrumb-area mt-37 hm-4-padding">
+    <div class="container-fluid">
+        <div class="breadcrumb-content text-center">
+            <h2>صفحه سفارش</h2>
+            <ul>
+                <li>
+                    <a href="~/">خانه</a>
+                </li>
+                <li>جزییات سفارش</li>
+                @section Message
+                {
+                    @{
+                        await Html.RenderPartialAsync("Alert");
+                    }
+
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="checkout-area pt-90 hm-3-padding pb-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-12">
+                <div class="your-order">
+                    <div class="checkbox-form">
+                        <h3>آدرس شما </h3>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="checkout-form-list">
+                                    <div class="card-body">
+                                        <div class="c-profile-address__content">
+                                            <ul>
+                                                <li><i class="ti-info-alt"></i> @Model.FullName</li>
+                                                <li><i class="ti-direction-alt"></i> @Model.Province ، @Model.City</li>
+                                                <li><i class="ti-rocket"></i> کد پستی : @Model.ZipCode</li>
+                                                <li><i class="ti-mobile"></i> شماره تماس :@Model.Phone</li>
+                                                <li><i class="ti-home"></i> @Model.FullAddress</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-12">
+                <div class="your-order">
+                    <h3>  سفارش شما </h3>
+                    <div class="your-order-table table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="product-name">محصول</th>
+                                    <th class="product-total">جمع</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    <tr class="cart_item">
+                                        <td class="product-name">
+                                            <a href="~/products/detail/@item.ProductId">@item.ProdductName <strong class="product-quantity"> × @item.Count</strong></a>
+                                        </td>
+                                        <td class="product-total">
+                                            <span class="amount">@(item.Count*item.Price) تومان </span>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                            <tfoot>
+
+                                <tr class="order-total">
+                                    <th>جمع سفارش</th>
+                                    <td>
+                                        <strong><span class="amount">@Model.SumProducts.ToString("n0") تومان </span></strong>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

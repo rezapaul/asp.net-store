@@ -1,0 +1,54 @@
+﻿@using MyStore.Application.Services.Contacts.Queries.IDetailContactAdmin
+@model ContactDetailDto
+@{
+    ViewData["Title"] = "جزییات پیام ";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title-wrap bar-warning">
+                <div class="card-title">جزییات پیام</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <ul class="no-list-style">
+                            <li class="mb-2">
+                                <span class="primary text-bold-500"><a><i class="ft-info font-small-3"></i> نام و نام خانوادگی  </a></span>
+                                <span class="line-height-2 display-block overflow-hidden">@Model.Name</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                        <ul class="no-list-style">
+                            <li class="mb-2">
+                                <span class="primary text-bold-500"><a><i class="ft-mail font-small-3"></i> ایمیل </a></span> <span style="font-size:11.2px;">(جهت پاسخ کلیک کنید)</span>
+                                <span class="line-height-2 display-block overflow-hidden">
+                                    <a href="mailto:@Model.Email">@Model.Email </a>
+                                </span>
+                            </li>
+                            <li class="mb-2">
+                                <span class="primary text-bold-500"><a><i class="ft-target font-small-3"></i> موضوع پیام </a></span>
+                                <span class="line-height-2 display-block overflow-hidden"> @Model.Tiltle</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <ul class="no-list-style">
+                            <li class="">
+                                <span class="primary text-bold-500"><a><i class="ft-message-circle   font-small-3"></i> متن پیام </a></span>
+                                <span class="line-height-2 display-block overflow-hidden">@Model.Text</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

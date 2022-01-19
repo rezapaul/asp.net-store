@@ -1,0 +1,29 @@
+﻿@using MyStore.Application.Services.Common.Queries.IGetMenu
+@model CategoryItemsDto
+@{
+    Layout = null;
+}
+
+<li>
+    <a href="#">دسته بندی محصولات <i class="ion-ios-arrow-down"></i></a>
+    <ul>
+        @foreach (var item in Model.Categories)
+        {
+        <li>
+            <a href="#" class="text-danger">@item.Name</a>
+            @if(item.Childs.Count > 0)
+            {
+            <ul>
+                @foreach(var child in item.Childs)
+                {
+                  <li>
+                       <a href="~/products?CatId=@child.CatId">@child.Name</a>
+                  </li>
+                }
+            </ul>
+            }
+        </li>
+        }
+
+    </ul>
+</li>

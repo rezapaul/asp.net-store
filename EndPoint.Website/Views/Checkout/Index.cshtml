@@ -1,0 +1,189 @@
+﻿
+@model EndPoint.Website.Models.ViewModels.Checkout.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "پرداخت";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-height"></div>
+
+<div class="breadcrumb-area mt-37 hm-4-padding">
+    <div class="container-fluid">
+        <div class="breadcrumb-content text-center">
+            <h2>صفحه پرداخت</h2>
+            <ul>
+                <li>
+                    <a href="~/">خانه</a>
+                </li>
+                <li>صفحه پرداخت</li>
+                @section Message
+                {
+                    @{
+                        await Html.RenderPartialAsync("Alert");
+                    }
+
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="banner-area hm-4-padding">
+    <div class="container-fluid">
+        <div class="banner-img">
+            <a href="~/"><img src="~/assets/img/banner/16.jpg" alt=""></a>
+        </div>
+    </div>
+</div>
+
+<div class="checkout-area pt-130 hm-3-padding pb-100">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-12">
+                <div class="your-order">
+                        <div class="checkbox-form">
+                            <h3>آدرس های شما   <a asp-action="Add" asp-controller="Address" class="btn btn-outline-warning">افزودن آدرس</a></h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @if (Model.Addresses.Addresses.Count > 0)
+                                    {
+                                        <div class="checkout-form-list">
+                                            @foreach (var address in Model.Addresses.Addresses)
+                                            {
+                                                <div class="card-body">
+                                                    <div class="c-profile-address__content">
+                                                        <ul>
+                                                            <li><i class="ti-info-alt"></i> @address.FullName</li>
+                                                            <li><i class="ti-direction-alt"></i> @address.Province ، @address.City</li>
+                                                            <li><i class="ti-rocket"></i> کد پستی : @address.ZipCode</li>
+                                                            <li><i class="ti-mobile"></i> شماره تماس :@address.Phone</li>
+                                                            <li><i class="ti-home"></i> @address.FullAddress</li>
+                                                            <li>
+                                                                <form asp-action="Remove" asp-controller="Address" method="post">
+                                                                    <input name="AddressId" type="hidden" value="@address.Id" />
+                                                                    <button type="submit" class="btn-danger" style="font-size:10px;">پاک کردن</button>
+                                                                </form>
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="checkout-form-list">
+                                            <div class="card-body">
+                                                <div class="c-profile-address__content">
+                                                    <p>آدرسی تاکنون ثبت نشده است</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                </div>
+             </div>
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="your-order">
+                        <h3>سفارش شما</h3>
+                        <div class="your-order-table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product-name">محصول</th>
+                                        <th class="product-total">جمع</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Cart.CartItems)
+                                    {
+                                        <tr class="cart_item">
+                                            <td class="product-name">
+                                                @item.ProdductName <strong class="product-quantity"> × @item.Count</strong>
+                                            </td>
+                                            <td class="product-total">
+                                                <span class="amount">@(item.Count*item.Price) تومان </span>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                                <tfoot>
+
+                                    <tr class="order-total">
+                                        <th>جمع سفارشات</th>
+                                        <td>
+                                            <strong><span class="amount">@Model.Cart.SumProducts.ToString("n0") تومان </span></strong>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="payment-method mt-40">
+                            <div class="payment-accordion">
+                                <div class="panel-group" id="faq">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h5 class="panel-title"><a data-toggle="collapse" aria-expanded="true" data-parent="#faq" href="#payment-1">انتقال مستقیم بانکی.</a></h5>
+                                        </div>
+                                        <div id="payment-1" class="panel-collapse collapse show">
+                                            <div class="panel-body">
+                                                <p>چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، .</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-2">پرداخت را بررسی کنید</a></h5>
+                                        </div>
+                                        <div id="payment-2" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <p>چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، .</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-3">پی پال</a></h5>
+                                        </div>
+                                        <div id="payment-3" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <p>چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="payment-method mt-40">
+                                    <div class="payment-accordion">
+                                        <div class="panel-group" id="faq">
+                                            <div class="panel panel-default">
+                                                <form asp-action="Add" asp-controller="Order" method="post">
+                                                    <div class="col-md-12">
+                                                        <div class="country-select">
+                                                            <input name="CartId" type="hidden" value="@Model.Cart.CartId"/>
+                                                            <label>آدرس را انتخاب کنید <span class="required">*</span></label>
+                                                            <select name="AddressId" asp-items="@ViewBag.Address" required></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="order-button-payment">
+                                                        <input type="submit" value="ارسال سفارش" />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+

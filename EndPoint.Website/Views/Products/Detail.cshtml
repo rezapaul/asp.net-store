@@ -1,0 +1,168 @@
+﻿@using MyStore.Application.Services.Products.Queries.IProductDetailForWebsite
+@model ProductDetailDto
+
+@{
+    ViewData["Title"] = "مشخصات محصول";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="header-height"></div>
+
+<div class="breadcrumb-area mt-37 hm-4-padding">
+    <div class="container-fluid">
+        <div class="breadcrumb-content text-center">
+            <h2>مشخصات محصول</h2>
+            <ul>
+                <li>
+                    <a href="~/">خانه</a>
+                </li>
+                <li>
+                    <a href="~/products">فروشگاه</a>
+                </li>
+                <li>مشخصات محصول</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="banner-area hm-4-padding">
+    <div class="container-fluid">
+        <div class="banner-img">
+            <a href="~/products"><img src="~/assets/img/banner/16.jpg" alt="فروشگاه"></a>
+        </div>
+    </div>
+</div>
+<div class="product-details-area hm-3-padding ptb-130">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product-details-img-content">
+                    <div class="product-details-tab ml-40">
+                        <div class="product-details-large tab-content">
+
+
+                            @for (int i = 0; i < Model.Images.Count; i++)
+                            {
+                                @if (i == 0)
+                                {
+                                    <div class="tab-pane active" id="pro-details-@Model.Images[i].Id">
+                                        <div class="easyzoom easyzoom--overlay">
+                                            <a href="~/@Model.Images[i].Source">
+                                                <img src="~/@Model.Images[i].Source" height="530" width="150" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="tab-pane" id="pro-details-@Model.Images[i].Id">
+                                        <div class="easyzoom easyzoom--overlay">
+                                            <a href="~/@Model.Images[i].Source">
+                                                <img src="~/@Model.Images[i].Source"height="530" width="150" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                        <div class="product-details-small nav mt-12 product-dec-slider owl-carousel">
+                            @foreach (var item in Model.Images)
+                            {
+                                <a class="active" href="#pro-details-@item.Id">
+                                    <img src="~/@item.Source" height="140" alt="">
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product-details-content">
+                    <h1>@Model.Title </h1>
+                    <div class="product-rating">
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <i class="ion-ios-star"></i>
+                        <span> ( 01 بررسی مشتری )</span>
+                    </div>
+                    <div class="product-price">
+                        <span>@Model.Price.ToString("n0") تومان</span>
+                    </div>
+                    <div class="product-overview">
+                        <h5 class="pd-sub-title">بررسی اجمالی محصولات</h5>
+                        <p>@Model.Description</p>
+                    </div>
+                    <div class="product-size">
+                        <h5 class="pd-sub-title">اندازه محصول</h5>
+                        <ul>
+                            <li>
+                                <a href="#">کوچک</a>
+                            </li>
+                            <li>
+                                <a href="#">متوسط</a>
+                            </li>
+                            <li>
+                                <a href="#">بزرگ</a>
+                            </li>
+                            <li>
+                                <a href="#">بسیار بزرگ</a>
+                            </li>
+                            <li>
+                                <a href="#">lm</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product-color">
+                        <h5 class="pd-sub-title">رنگ محصول</h5>
+                        <ul>
+                            <li class="red">آبی</li>
+                            <li class="pink">صورتی</li>
+                            <li class="blue">آبی</li>
+                            <li class="sky2">آبی</li>
+                            <li class="green">زرد</li>
+                            <li class="purple2">سبز</li>
+                        </ul>
+                    </div>
+                    <div class="quickview-plus-minus">
+                        <div class="cart-plus-minus">
+                            <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                        </div>
+                        <div class="quickview-btn-cart">
+                            <a class="btn-style cr-btn" href="#"><span>افزودن به سبد خرید</span></a>
+                        </div>
+                        <div class="quickview-btn-wishlist">
+                            <a class="btn-hover cr-btn" href="#"><span><i class="ion-ios-heart-outline"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="product-categories">
+                        <h5 class="pd-sub-title">دسته بندی ها</h5>
+                        <ul>
+                            <li>
+                                <a href="~/products?CatId=@Model.CategoryId">@Model.Category</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product-share">
+                        <h5 class="pd-sub-title">اشتراک گذاری</h5>
+                        <ul>
+                            <li>
+                                <a href="#"><i class="ion-social-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="ion-social-tumblr"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="ion-social-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"> <i class="ion-social-instagram-outline"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

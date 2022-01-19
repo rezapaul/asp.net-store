@@ -1,0 +1,45 @@
+﻿@model List<EndPoint.Website.Areas.Admin.Models.ViewModels.ManageUsersViewModel.IndexViewModel>
+
+@{
+    ViewData["Title"] = "مدیریت کاربران";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+@if (!Model.Any())
+{
+<h1>کاربری یافت نشد</h1>
+}
+else
+{
+    for (int i = 0; i < Model.Count; i++)
+    {
+<div class="card mt-2">
+    <div class="card-header">
+        نام و نام خانوادگی : <b>@Model[i].Fullname</b>
+    </div>
+    <div class="card-header">
+        نام کاربری : <b>@Model[i].UserName</b>
+    </div>
+    <div class="card-header">
+        ایمیل : <b>@Model[i].Email</b>
+    </div>
+    <div class="card-footer">
+        <form asp-controller="ManageUsers" asp-action="DeleteUser" asp-route-id="@Model[i].Id" method="post">
+
+            <a asp-controller="ManageUsers" asp-action="EditUser" asp-route-id="@Model[i].Id"
+               class="btn btn-primary">Edit Username</a>
+
+            <a asp-controller="ManageUsers" asp-action="AddUserToRole" asp-route-id="@Model[i].Id"
+               class="btn btn-primary">Add to role</a>
+            <a asp-controller="ManageUsers" asp-action="RemoveUserFromRole" asp-route-id="@Model[i].Id"
+               class="btn btn-danger">Remove From role</a>
+
+            <button type="submit" class="btn btn-danger">Delete user</button>
+        </form>
+    </div>
+</div>
+    }
+}
+
+
+

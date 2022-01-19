@@ -1,0 +1,494 @@
+﻿@using EndPoint.Website.ClaimUtility
+@using MyStore.Persistence 
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Authorization
+@inject SignInManager<UserAdditional> Signinmanager;
+@inject IAuthorizationService AuthorizationService;
+
+<!doctype html>
+<html class="no-js" lang="fa">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewData["Title"] | فروشگاه من</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- all css here -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/animate.css">
+    <link rel="stylesheet" href="~/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/assets/css/chosen.min.css">
+    <link rel="stylesheet" href="~/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="~/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/assets/css/meanmenu.min.css">
+    <link rel="stylesheet" href="~/assets/css/bundle.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/css/rtl.css">
+    <link rel="stylesheet" href="~/assets/css/responsive.css">
+    <script src="~/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- header start -->
+        <header>
+            <div class="header-area transparent-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-5 col-5">
+                            <div class="language-currency">
+                                <div class="language">
+                                    <select class="select-header orderby">
+                                        <option value="">انگلیسی</option>
+                                        <option value="">فرانسوی</option>
+                                        <option value="">عربی</option>
+                                    </select>
+                                </div>
+                                <div class="currency">
+                                    <select class="select-header orderby">
+                                        <option value="">دلار</option>
+                                        <option value="">تومان</option>
+                                        <option value="">یورو</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="sticky-logo">
+                                <a href="~/"><img src="~/assets/img/logo/2.png" alt="" /></a>
+                            </div>
+                            <div class="logo-small-device">
+                                <a href="~/"><img alt="" src="~/assets/img/logo/logo.png"></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 d-none d-md-block">
+                            <div class="logo-menu-wrapper text-center">
+                                <div class="logo">
+                                    <a href="~/"><img src="~/assets/img/logo/logo.png" alt="" /></a>
+                                </div>
+                                <div class="main-menu">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <a asp-action="Index" asp-controller="Home">خانه</a>
+                                            </li>
+                                            <li>
+                                                <a asp-action="Index" asp-controller="Products">فروشگاه</a>
+
+                                            </li>
+                                            @await Component.InvokeAsync("GetMenu")
+                                            <li>
+                                                <a href="blog.html">وبلاگ <i class="ion-ios-arrow-down"></i></a>
+                                                <ul>
+                                                    <li><a href="blog-details-standerd.html">وبلاگ استاندارد</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a asp-action="AboutUs" asp-controller="Home">درباره ی ما </a></li>
+                                            <li><a asp-action="ContactUs" asp-controller="Home">تماس با ما</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-7 col-7">
+                            <div class="header-site-icon">
+                                <div class="header-search same-style">
+                                    <button class="sidebar-trigger-search">
+                                        <span class="ti-search"></span>
+                                    </button>
+                                </div>
+
+                                <div class="header-login same-style">
+                                    <button class="sidebar-trigger-login dropdown-toggle" data-toggle="dropdown">
+                                        <span class="ti-user"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a style="font-size:small;" class="dropdown-item">@ClaimUtility.GetUserFullname(User)</a>
+                                            @if (ClaimUtility.GetRoles(User).Where(p => p == "Admin").Count() >= 1)
+                                            {
+                                                <a style="font-size:small;" class="dropdown-item" href="~/admin/manageusers">پنل ادمین</a>
+                                            }
+
+                                            <a style="font-size:small;" class="dropdown-item" href="~/user/favorite">علاقه مندی ها</a>
+                                            <a style="font-size:small;" class="dropdown-item" href="~/order">سفارش های شما</a>
+                                            <form asp-action="Logout" asp-controller="Account" method="post">
+                                                <button type="submit" class="dropdown-item text-danger" style="font-size:small;">خروج</button>
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <a style="font-size:small;" class="dropdown-item" href="~/account/login">ورود</a>
+                                            <a style="font-size:small;" class="dropdown-item" href="~/account/register">ثبت نام</a>
+                                        }
+
+                                    </div>
+                                </div>
+
+                                <div class="header-cart same-style">
+                                    <button class="sidebar-trigger">
+                                        <i class="ti-shopping-cart"></i>
+                                        @await Component.InvokeAsync("GetCount")
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobile-menu-area col-12">
+                            <div class="mobile-menu">
+                                <nav id="mobile-menu-active">
+                                    <ul class="menu-overflow">
+                                        <li>
+                                            <a href="~/">خانه</a>
+                                            <ul>
+                                                <li><a href="~/">صفحه اصلی</a></li>
+
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">صفحات</a>
+                                            <ul>
+                                                <li><a href="about-us.html">درباره ی ما</a></li>
+                                                <li><a href="cart.html">صفحه سبد خرید</a></li>
+                                                <li><a href="checkout.html">پرداخت</a></li>
+                                                <li><a href="wishlist.html">لیست علاقه مندیها</a></li>
+                                                <li><a href="login-register.html">ورود و ثبت نام</a></li>
+                                                <li><a href="contact.html">تماس با ما</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">خرید</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="#"> فروشگاه</a>
+                                                    <ul>
+                                                        <li><a href="shop.html"> شبکه 4 ستون</a></li>
+                                                        <li><a href="product-details.html">جزئیات محصول</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#">نمونه منو</a>
+                                                    <ul>
+                                                        <li><a href="#">نمونه</a></li>
+                                                        <li><a href="#">نمونه</a></li>
+                                                        <li><a href="#">نمونه</a></li>
+                                                        <li><a href="#"> نمونه</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">وبلاگ</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="blog.html">وبلاگ </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">جزئیات وبلاگ</a>
+                                                    <ul>
+                                                        <li><a href="blog-details-standerd.html">پست استاندارد</a></li>
+
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact.html"> تماس با ما</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- sidebar-cart start -->
+        @await Component.InvokeAsync("GetCart")
+        
+        <!-- main-search start -->
+        <!-- main-search start -->
+        <div class="main-search-active">
+
+
+            <div class="sidebar-search-icon">
+                <button class="search-close"><span class="ti-close"></span></button>
+            </div>
+            <div class="sidebar-search-input">
+                <form asp-controller="Products" asp-action="Index" method="get">
+                    <div class="form-search">
+                        <input name="Search" class="input-text" value="" placeholder="جستجو..." type="search">
+                        <button>
+                            <i class="ti-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @await RenderSectionAsync("Message", required: false)
+        @RenderBody()
+
+        <footer class="footer-padding hm-4-padding">
+            <div class="container-fluid">
+                <div class="footer-top pt-85 pb-25">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-5">
+                            <div class="footer-widget mb-30">
+                                <div class="footer-widget-title">
+                                    <h3>در تماس باشید</h3>
+                                </div>
+                                <div class="food-info-wrapper">
+                                    <div class="food-address">
+                                        <div class="food-info-icon">
+                                            <i class="ion-ios-home-outline"></i>
+                                        </div>
+                                        <div class="food-info-content">
+                                            <p>ایران ، نور</p>
+                                        </div>
+                                    </div>
+                                    <div class="food-address">
+                                        <div class="food-info-icon">
+                                            <i class="ion-ios-telephone-outline"></i>
+                                        </div>
+                                        <div class="food-info-content">
+                                            <p>09397850037 </p>
+                                        </div>
+                                    </div>
+                                    <div class="food-address">
+                                        <div class="food-info-icon">
+                                            <i class="ion-ios-email-outline"></i>
+                                        </div>
+                                        <div class="food-info-content">
+                                            <p><a href="#">info@example.com</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4">
+                            <div class="footer-widget mb-30">
+                                <div class="footer-widget-title">
+                                    <h3>اطلاعات</h3>
+                                </div>
+                                <div class="food-widget-content">
+                                    <ul class="quick-link">
+                                        <li><a href="#">تحویل</a></li>
+                                        <li><a href="#">اطلاع قانونی</a></li>
+                                        <li><a href="#">شرایط و ضوابط</a></li>
+                                        <li><a href="about-us.html">درباره ی ما</a></li>
+                                        <li><a href="#">پرداخت امن</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3">
+                            <div class="footer-widget mb-30">
+                                <div class="footer-widget-title">
+                                    <h3>حساب ها</h3>
+                                </div>
+                                <div class="food-widget-content">
+                                    <ul class="quick-link">
+                                        <li><a href="login-register.html">ورود</a></li>
+                                        <li><a href="cart.html">مشاهده سبد خرید</a></li>
+                                        <li><a href="wishlist.html">لیست علاقه مندی های من</a></li>
+                                        <li><a href="#">سفارش من را دنبال کنید</a></li>
+                                        <li><a href="#">کمک</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <div class="footer-widget mb-30">
+                                <div class="footer-widget-title">
+                                    <h3>پشتیبانی</h3>
+                                </div>
+                                <div class="food-widget-content">
+                                    <ul class="quick-link">
+                                        <li><a href="contact.html">سلام و تماس با ما</a></li>
+                                        <li><a href="#">حمل و نقل و مالیات</a></li>
+                                        <li><a href="#">خط مشی بازگشت</a></li>
+                                        <li><a href="#">شرکت های وابسته</a></li>
+                                        <li><a href="#">اطلاع قانونی</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer-widget mb-30">
+                                <div class="footer-widget-title">
+                                    <h3>خوراک توییتر</h3>
+                                </div>
+                                <div class="twitter-info-wrapper">
+                                    <div class="single-twitter">
+                                        <div class="twitter-icon">
+                                            <i class="ion-social-twitter-outline"></i>
+                                        </div>
+                                        <div class="twitter-content">
+                                            <p>
+                                                جدید <a href="#">#موضوع انتخاب </a> <a class="link1" href="#">توییتر</a> <a class="link2" href="#">https://twitter.com/#</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="single-twitter">
+                                        <div class="twitter-icon">
+                                            <i class="ion-social-twitter-outline"></i>
+                                        </div>
+                                        <div class="twitter-content">
+                                            <p>
+                                                جدید <a href="#">#موضوع انتخاب </a> <a class="link1" href="#">توییتر</a> <a class="link2" href="#">https://twitter.com/#</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="single-twitter">
+                                        <div class="twitter-icon">
+                                            <i class="ion-social-twitter-outline"></i>
+                                        </div>
+                                        <div class="twitter-content">
+                                            <p>
+                                                جدید <a href="#">#موضوع انتخاب </a> <a class="link1" href="#">توییتر</a> <a class="link2" href="#">https://twitter.com/#</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom border-top-1 ptb-15">
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="copyright-payment">
+                                <div class="copyright">
+                                    <p>
+                                        کپی رایت © 1398 تمامی حقوق برای رضا جلال محفوظ است.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="footer-payment-method">
+                                <a href="#"><img alt="" src="~/~/assets/img/icon-img/7.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span class="ion-android-close" aria-hidden="true"></span>
+            </button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="qwick-view-left">
+                            <div class="quick-view-learg-img">
+                                <div class="quick-view-tab-content tab-content">
+                                    <div class="tab-pane active show fade" id="modal1" role="tabpanel">
+                                        <img src="~/assets/img/quick-view/l1.jpg" alt="">
+                                    </div>
+                                    <div class="tab-pane fade" id="modal2" role="tabpanel">
+                                        <img src="~/assets/img/quick-view/l2.jpg" alt="">
+                                    </div>
+                                    <div class="tab-pane fade" id="modal3" role="tabpanel">
+                                        <img src="~/assets/img/quick-view/l3.jpg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quick-view-list nav" role="tablist">
+                                <a class="active" href="#modal1" data-toggle="tab" role="tab" aria-selected="true"
+                                   aria-controls="home1">
+                                    <img src="~/assets/img/quick-view/s1.jpg" alt="">
+                                </a>
+                                <a href="#modal2" data-toggle="tab" role="tab" aria-selected="false" aria-controls="home2">
+                                    <img src="~/assets/img/quick-view/s2.jpg" alt="">
+                                </a>
+                                <a href="#modal3" data-toggle="tab" role="tab" aria-selected="false" aria-controls="home3">
+                                    <img src="~/assets/img/quick-view/s3.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="qwick-view-right">
+                            <div class="qwick-view-content">
+                                <h3>ماگ دست ساز</h3>
+                                <div class="price">
+                                    <span class="new">90000تومان</span>
+                                    <span class="old">120000تومان  </span>
+                                </div>
+                                <div class="rating-number">
+                                    <div class="quick-view-rating">
+                                        <i class="ion-ios-star red-star"></i>
+                                        <i class="ion-ios-star red-star"></i>
+                                        <i class="ion-ios-star red-star"></i>
+                                        <i class="ion-ios-star red-star"></i>
+                                        <i class="ion-ios-star red-star"></i>
+                                    </div>
+                                </div>
+                                <p>
+                                    چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                    تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. .
+                                </p>
+                                <div class="quick-view-select">
+                                    <div class="select-option-part">
+                                        <label>سایز*</label>
+                                        <select class="select">
+                                            <option value="">- لطفا انتخاب کنید -</option>
+                                            <option value="">900</option>
+                                            <option value="">700</option>
+                                        </select>
+                                    </div>
+                                    <div class="select-option-part">
+                                        <label>رنگ *</label>
+                                        <select class="select">
+                                            <option value="">-لطفا انتخاب کنید -</option>
+                                            <option value="">نارنجی</option>
+                                            <option value="">صورتی</option>
+                                            <option value="">زرد</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="quickview-plus-minus">
+                                    <div class="cart-plus-minus">
+                                        <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                    </div>
+                                    <div class="quickview-btn-cart">
+                                        <a class="btn-style cr-btn" href="#"><span>افزودن به سبد خرید</span></a>
+                                    </div>
+                                    <div class="quickview-btn-wishlist">
+                                        <a class="btn-hover cr-btn" href="#">
+                                            <span>
+                                                <i class="ion-ios-heart-outline"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- all js here -->
+    <script src="~/assets/js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="~/assets/js/popper.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/isotope.pkgd.min.js"></script>
+    <script src="~/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/js/jquery.counterup.min.js"></script>
+    <script src="~/assets/js/waypoints.min.js"></script>
+    <script src="~/assets/js/ajax-mail.js"></script>
+    <script src="~/assets/js/owl.carousel.min.js"></script>
+    <script src="~/assets/js/plugins.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+
+
+</html>
+
+
+
