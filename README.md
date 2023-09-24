@@ -36,8 +36,6 @@ Coded With Clean Architecture
 <br />
 ![alt text](https://github.com/rezapaul/asp.net-store/blob/master/Pictures/Screenshot%20(173).png?raw=true)
 <br />
-![alt text](https://github.com/rezapaul/asp.net-store/blob/master/Pictures/Screenshot%20(174).png?raw=true)
-<br />
 
 ### Admin Panel Screenshots
 
