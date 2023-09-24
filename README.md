@@ -26,8 +26,6 @@ Coded With Clean Architecture
 <br />
 ![alt text](https://github.com/rezapaul/asp.net-store/blob/master/Pictures/Screenshot%20(166).png?raw=true)
 <br />
-![alt text](https://github.com/rezapaul/asp.net-store/blob/master/Pictures/Screenshot%20(167).png?raw=true)
-<br />
 ![alt text](https://github.com/rezapaul/asp.net-store/blob/master/Pictures/Screenshot%20(168).png?raw=true)
 <br />
 ![alt text](https://github.com/rezapaul/asp.net-store/blob/master/Pictures/Screenshot%20(169).png?raw=true)
